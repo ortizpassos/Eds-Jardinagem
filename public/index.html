@@ -2,7 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Forçar modo desktop em celulares: define a largura do layout para 1200px -->
+  <meta name="viewport" content="width=1200, initial-scale=1" />
+  <script>
+    (function(){
+      // Aplicar somente em navegadores móveis para minimizar efeitos em desktop
+      if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        var m = document.querySelector('meta[name="viewport"]');
+        if (!m) {
+          m = document.createElement('meta');
+          m.name = 'viewport';
+          document.head.appendChild(m);
+        }
+        // Define largura fixa do layout para "desktop" (pode ajustar 1024/1200 conforme preferir)
+        m.setAttribute('content', 'width=1200, initial-scale=1');
+        // Classe útil para sobrescrever regras responsivas específicas via CSS
+        document.documentElement.classList.add('force-desktop');
+      }
+    })();
+  </script>
   <title>EDS Jardinagem e Pintura — Home</title>
   <style>
     :root{
